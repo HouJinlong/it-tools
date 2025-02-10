@@ -5,7 +5,21 @@
   "scripts": {},
   "private": true,
   "dependencies": {},
+  "nx": {
+    "name": "@bowen/source",
+    "projectType": "application"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git",
+      "czConfig": "./tools/scripts/commitizen.js"
+    }
+  },
   "devDependencies": {
+    "@nx/devkit": "20.4.2",
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0",
+    "cz-git": "^1.8.0",
     "@nx/js": "20.4.2",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
