@@ -1,0 +1,10 @@
+.Elements-Col{
+    /* background: #ccc; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+.Elements-Col .ant-image{
+    border: 1px solid #ccc;
+}

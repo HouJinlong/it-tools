@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "fabric": "^6.5.4",
     "gif.js": "^0.2.0"
   }
 }

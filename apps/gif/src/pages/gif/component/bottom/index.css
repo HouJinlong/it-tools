@@ -1,0 +1,21 @@
+.Bottom .img{
+    border: 1px solid #ccc;
+    position: relative;
+    width: 92px;
+    height: 92px;
+    cursor: pointer;
+}
+.Bottom .img.active{
+    border-color: #e76033;
+    &::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #e76033;
+        opacity: .5;
+        z-index: 1;
+    }
+}
