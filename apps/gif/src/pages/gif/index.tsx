@@ -29,7 +29,8 @@ export const Gif = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            overflow:'hidden'
+            overflow:'hidden',
+            position:'relative'
           }}
         >
           <Component.Edit setCanvas={setCanvas} />

@@ -1,0 +1,50 @@
+import { createSchemaField } from '@formily/react';
+
+import {
+  FormItem,
+  Input,
+  NumberPicker,
+  DatePicker,
+  TimePicker,
+  Select,
+  Radio,
+  Switch,
+  Space,
+  ArrayItems,
+  ArrayTable,
+  FormCollapse,
+  FormGrid,
+  FormLayout,
+  FormTab,
+  PreviewText,
+  Editable,
+  SelectTable,
+  Checkbox,
+} from '@formily/antd-v5';
+import * as Component from './component';
+
+export const SchemaField = createSchemaField({
+  components: {
+    ...Component,
+    FormItem,
+    Input,
+    NumberPicker,
+    DatePicker,
+    TimePicker,
+    Select,
+    Radio,
+    Switch,
+    Space,
+    ArrayItems,
+    ArrayTable,
+    FormCollapse,
+    FormGrid,
+    FormLayout,
+    FormTab,
+    PreviewText,
+    Editable,
+    SelectTable,
+    Checkbox,
+  },
+  scope: {},
+});

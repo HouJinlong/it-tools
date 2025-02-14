@@ -12,7 +12,7 @@ export const Bottom = () => {
 
   const renderGif = useCallback(() => {
     return new Promise((res) => {
-      const img = document.querySelectorAll('.Bottom .img img');
+      const img = document.querySelectorAll('.Bottom .frame img');
       console.log('img: ', img);
       if (!img.length) {
         open?.({
@@ -54,7 +54,7 @@ export const Bottom = () => {
       {data.map((v, i) => {
         return (
           <div
-            className={`img ${i === index && 'active'}`}
+            className={`img frame ${i === index && 'active'}`}
             onClick={() => {
               updateIndex(i);
             }}

@@ -6,23 +6,12 @@ import * as Json from './json';
 import { useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 
-export const Elements = () => {
+export const Template = () => {
   const ctx = useGlobalStore().canvas!;
   const fun = useMemo(() => {
     const add = (info: (typeof Json)['base']['list'][0]) => {
-      fabric.util
-        .enlivenObjects([
-          {
-            ...info.json,
-            id: uuid(),
-          },
-        ])
-        .then((objects) => {
-          objects.forEach((object) => {
-            ctx.add(object);
-            ctx.setActiveObject(object)
-          });
-          ctx.renderAll();
+        ctx.loadFromJSON(info.json).then(() => {
+            ctx.renderAll();
         });
     };
     return {

@@ -4,19 +4,30 @@ import * as Component from './component';
 export const Left = (props: GlobalStore) => {
   return (
     <Tabs
-      defaultActiveKey="2"
+      defaultActiveKey="1"
       tabPosition={'left'}
       style={{ height: '100%' }}
       size="small"
       items={[
+        // {
+        //   key: '0',
+        //   label: '上传',
+        //   children: (
+        //     <div
+        //       style={{ marginLeft: '-12px', padding: '10px', paddingLeft: 0 }}
+        //     >
+        //       <Component.UploadImg />
+        //     </div>
+        //   ),
+        // },
         {
           key: '1',
-          label: '上传',
+          label: '模版',
           children: (
             <div
               style={{ marginLeft: '-12px', padding: '10px', paddingLeft: 0 }}
             >
-              <Component.UploadImg />
+              <Component.Template />
             </div>
           ),
         },

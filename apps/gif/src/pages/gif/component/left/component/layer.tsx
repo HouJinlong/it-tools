@@ -3,6 +3,7 @@ import { useGlobalStore } from '../../../context';
 import { useEffect, useState } from 'react';
 export const Layer = () => {
   const ctx = useGlobalStore().canvas!;
+  const { activeObjects } = useGlobalStore();
   const [list, setList] = useState<{
     id: string;
     type: string;
@@ -41,13 +42,15 @@ export const Layer = () => {
           style={{
             fontSize: '10px',
             cursor: 'pointer',
-            paddingLeft:'4px'
+            paddingLeft: '4px',
+            backgroundColor: activeObjects.find((v) => v.id === item.id)
+              ? 'rgba(231,96, 51,0.21)'
+              : '',
           }}
           onClick={() => {
             const temp = ctx.getObjects().filter((v) => v.id === item.id);
-            console.log('temp: ', temp);
-            ctx.setActiveObject(temp[0])
-            ctx.requestRenderAll()
+            ctx.setActiveObject(temp[0]);
+            ctx.requestRenderAll();
           }}
         >
           <Tag

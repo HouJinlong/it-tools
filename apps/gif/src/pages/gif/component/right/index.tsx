@@ -1,25 +1,15 @@
-import { Button } from 'antd';
 import { useGlobalStore } from '../../context';
-const SaveCanvas = () => {
-  const { canvas, updateCur } = useGlobalStore();
-  return (
-    <Button
-      type="primary"
-      size="small"
-      onClick={() => {
-        updateCur({
-          src: canvas?.toDataURL(),
-          json:canvas?.toDatalessJSON(),
-        });
-      }}
-    >
-      保存
-    </Button>
-  );
-};
-
+import * as Component from './component';
 export const Right = () => {
-  return <div>
-    <SaveCanvas />
-  </div>;
+  const { activeObjects } = useGlobalStore();
+  const temp = {
+    active: activeObjects.length !== 0,
+    one: activeObjects.length === 1,
+  };
+  return (
+    <div>
+      {temp.active ? <Component.Operation />:<Component.FabricSetting />}
+      {temp.one && <Component.Setting />}
+    </div>
+  );
 };
