@@ -1,4 +1,5 @@
 import { createSchemaField } from '@formily/react';
+import { Space as AntdSpace  } from 'antd';
 
 import {
   FormItem,
@@ -26,6 +27,7 @@ import * as Component from './component';
 export const SchemaField = createSchemaField({
   components: {
     ...Component,
+    'SpaceCompact':AntdSpace.Compact,
     FormItem,
     Input,
     NumberPicker,

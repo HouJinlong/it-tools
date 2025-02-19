@@ -1,17 +1,18 @@
 import React, { useRef, useEffect, useState } from 'react';
 import * as fabric from 'fabric';
 import { useGlobalStore, GlobalStore } from '../../../../context';
+import { initMyControls } from './my-controls';
+import { useFonts } from './fonts';
 export const MyFabric = (props: GlobalStore) => {
   const canvasRef = useRef(null);
   const { data, index, setCanvas, setActiveObjects } = useGlobalStore();
+  useFonts();
   useEffect(() => {
     const temp = new fabric.Canvas(canvasRef.current, {
-      // fireRightClick: true,
-      // stopContextMenu: true,
       controlsAboveOverlay: true,
       imageSmoothingEnabled: false,
       preserveObjectStacking: true,
-      backgroundColor:'#fff'
+      backgroundColor: '#fff',
     });
     setCanvas(temp);
     // fix：hiddenTextarea
@@ -19,6 +20,7 @@ export const MyFabric = (props: GlobalStore) => {
       const obj = options.target;
       if (obj instanceof fabric.Textbox || obj instanceof fabric.IText) {
         obj.hiddenTextareaContainer = temp.lowerCanvasEl.parentNode;
+        temp.loadFont(obj.fontFamily)
       }
     });
     const selection = () => {
@@ -29,7 +31,8 @@ export const MyFabric = (props: GlobalStore) => {
     temp.on('selection:updated', selection);
     temp.on('selection:cleared', selection);
 
-    temp.loadFromJSON(data[index].json || {}).then(() => {
+    initMyControls();
+    temp.MyLoadFromJSON(data[index].json || {}).then(() => {
       temp.renderAll();
     });
     return () => {

@@ -37,7 +37,7 @@ export const Gif = () => {
         </div>
         <div
           style={{
-            width: '200px',
+            width: '265px',
             background: '#fff',
             flexShrink: 0,
           }}

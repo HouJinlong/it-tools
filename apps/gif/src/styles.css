@@ -8,3 +8,15 @@
     height:  100%;
     box-sizing: border-box;
 }
+
+
+
+.my-ant-space{
+    width: 100%;
+   
+}
+
+.my-ant-space.first .ant-space-item:nth-of-type(1){
+    flex: 1;
+    overflow: hidden;
+}

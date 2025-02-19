@@ -10,6 +10,9 @@ export const MyTldraw = () => {
         position: 'absolute',
         inset: 0,
       }}
+      // onMouseDown={()=>{
+      //   console.log('11')
+      // }}
     >
       <Tldraw
         options={{ maxPages:1 }}

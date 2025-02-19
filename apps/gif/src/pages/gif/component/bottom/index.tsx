@@ -1,4 +1,4 @@
-import { Flex, Image, Divider, Button, Empty } from 'antd';
+import { Flex, Image, Divider, Button, Empty, Space, Typography } from 'antd';
 import { useGlobalStore } from '../../context';
 import './index.css';
 import { useCallback, useState } from 'react';
@@ -6,8 +6,7 @@ import GIF from 'gif.js';
 import { useNotification } from '@refinedev/core';
 export const Bottom = () => {
   const { open } = useNotification();
-  const { canvas, data, index, addData, updateIndex } = useGlobalStore();
-  console.log('data: ', data);
+  const { canvas, data, index, addCloneData, updateIndex } = useGlobalStore();
   const [gif, setGif] = useState('');
 
   const renderGif = useCallback(() => {
@@ -24,7 +23,7 @@ export const Bottom = () => {
         workers: 2,
         quality: 10,
         workerScript: new URL(
-          '../../../../assets/gif.worker.js',
+          '../../../../../node_modules/gif.js/dist/gif.worker.js',
           import.meta.url
         ).href,
         debug: true,
@@ -77,12 +76,12 @@ export const Bottom = () => {
           height: '40px',
         }}
       ></Divider>
-      <Flex>
+      <Space direction="vertical">
         <Button
           type="primary"
           size="small"
           onClick={() => {
-            addData();
+            addCloneData();
           }}
         >
           新建
@@ -99,7 +98,22 @@ export const Bottom = () => {
         >
           生成
         </Button>
-      </Flex>
+      </Space>
+      <Space direction="vertical">
+        <Typography.Text
+          copyable={{
+            text: JSON.stringify(canvas?.toDatalessJSON(['id', 'name','selectable'])),
+            icon: [
+              <Button
+                type="primary"
+                size="small"
+              >
+                拷贝
+              </Button>,
+            ],
+          }}
+        />
+      </Space>
       <div className={`img`}>
         {gif ? (
           <Image

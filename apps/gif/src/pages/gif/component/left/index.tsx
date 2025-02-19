@@ -9,17 +9,6 @@ export const Left = (props: GlobalStore) => {
       style={{ height: '100%' }}
       size="small"
       items={[
-        // {
-        //   key: '0',
-        //   label: '上传',
-        //   children: (
-        //     <div
-        //       style={{ marginLeft: '-12px', padding: '10px', paddingLeft: 0 }}
-        //     >
-        //       <Component.UploadImg />
-        //     </div>
-        //   ),
-        // },
         {
           key: '1',
           label: '模版',

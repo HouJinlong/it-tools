@@ -18,11 +18,8 @@ export const Elements = () => {
           },
         ])
         .then((objects) => {
-          objects.forEach((object) => {
-            ctx.add(object);
-            ctx.setActiveObject(object)
-          });
-          ctx.renderAll();
+          ctx.MyAdd(...objects)
+          ctx.renderAll()
         });
     };
     return {
