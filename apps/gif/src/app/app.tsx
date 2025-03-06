@@ -20,6 +20,7 @@ import { App as AntdApp, ConfigProvider } from 'antd';
 
 
 import { Gif } from '../pages/gif';
+import { GifPaser } from '../pages/git-paser';
 
 export function App() {
   return (
@@ -33,6 +34,10 @@ export function App() {
               {
                 name: 'gif动图',
                 list: '/gif',
+              },
+              {
+                name: 'gif解析',
+                list: '/git-paser',
               },
             ]}
             options={{
@@ -61,6 +66,7 @@ export function App() {
                   element={<NavigateToResource resource="gif动图" />}
                 />
                 <Route path="gif" index element={<Gif />} />
+                <Route path="git-paser" index element={<GifPaser />} />
               </Route>
               <Route path="*" element={<ErrorComponent />} />
             </Routes>

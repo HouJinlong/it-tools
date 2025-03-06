@@ -204,6 +204,9 @@ importers:
       gif.js:
         specifier: ^0.2.0
         version: 0.2.0
+      gifuct-js:
+        specifier: ^2.1.2
+        version: 2.1.2
 
 packages:
 
@@ -9116,6 +9119,12 @@ packages:
     resolution: {integrity: sha512-bYxCoT8OZKmbxY8RN4qDiYuj4nrQDTzgLRcFVovyona1PTWNePzI4nzOmotnlOFIzTk/ZxAHtv+TfVLiBWj/hw==, tarball: https://registry.npmjs.org/gif.js/-/gif.js-0.2.0.tgz}
     dev: false
 
+  /gifuct-js@2.1.2:
+    resolution: {integrity: sha512-rI2asw77u0mGgwhV3qA+OEgYqaDn5UNqgs+Bx0FGwSpuqfYn+Ir6RQY5ENNQ8SbIiG/m5gVa7CD5RriO4f4Lsg==, tarball: https://registry.npmjs.org/gifuct-js/-/gifuct-js-2.1.2.tgz}
+    dependencies:
+      js-binary-schema-parser: 2.0.3
+    dev: false
+
   /git-raw-commits@2.0.11:
     resolution: {integrity: sha512-VnctFhw+xfj8Va1xtfEqCUD2XDrbAPSJx+hSrE5K7fGdjZruW7XV+QOrN7LF/RJyvspRiD2I0asWsxFp0ya26A==, tarball: https://registry.npmjs.org/git-raw-commits/-/git-raw-commits-2.0.11.tgz}
     engines: {node: '>=10'}
@@ -10026,6 +10035,10 @@ packages:
     resolution: {integrity: sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==, tarball: https://registry.npmjs.org/jiti/-/jiti-1.21.7.tgz}
     hasBin: true
     dev: true
+
+  /js-binary-schema-parser@2.0.3:
+    resolution: {integrity: sha512-xezGJmOb4lk/M1ZZLTR/jaBHQ4gG/lqQnJqdIv4721DMggsa1bDVlHXNeHYogaIEHD9vCRv0fcL4hMA+Coarkg==, tarball: https://registry.npmjs.org/js-binary-schema-parser/-/js-binary-schema-parser-2.0.3.tgz}
+    dev: false
 
   /js-cookie@3.0.5:
     resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==, tarball: https://registry.npmjs.org/js-cookie/-/js-cookie-3.0.5.tgz}
