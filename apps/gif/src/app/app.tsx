@@ -17,12 +17,19 @@ import {
   useNotificationProvider,
 } from '@refinedev/antd';
 import { App as AntdApp, ConfigProvider } from 'antd';
-
+import { useLocalStorageState } from 'ahooks';
 
 import { Gif } from '../pages/gif';
 import { GifPaser } from '../pages/git-paser';
 
 export function App() {
+  const [siderCollapsed, setSiderCollapsed] = useLocalStorageState<
+    boolean
+  >('initialSiderCollapsed', {
+    defaultValue: true,
+  });
+
+
   return (
     <BrowserRouter>
       <ConfigProvider theme={RefineThemes.Orange}>
@@ -48,6 +55,8 @@ export function App() {
               <Route
                 element={
                   <ThemedLayoutV2
+                    initialSiderCollapsed={siderCollapsed}
+                    onSiderCollapsed={setSiderCollapsed}
                     Title={({ collapsed }) => (
                       <ThemedTitleV2
                         // collapsed is a boolean value that indicates whether the <Sidebar> is collapsed or not
