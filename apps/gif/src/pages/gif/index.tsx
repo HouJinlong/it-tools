@@ -6,11 +6,11 @@ import { useGlobalStore } from './context';
 export const Gif = () => {
   const { canvas, setCanvas } = useGlobalStore();
   return (
-    <Flex vertical style={{ height: '100%' }}>
+    <Flex vertical style={{ height: 'calc(100vh - 20px)',  overflow:'hidden' }}>
       <Flex
         style={{
           flex: '1',
-          marginBottom: '10px',
+          overflow:'hidden'
         }}
       >
         <div
@@ -25,7 +25,6 @@ export const Gif = () => {
         <div
           style={{
             flex: '1',
-            background: '#f5f5f5',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -34,25 +33,28 @@ export const Gif = () => {
           }}
         >
           <Component.Edit setCanvas={setCanvas} />
+          <div
+            style={{
+                position:'absolute',
+                bottom:0,
+                right:'10px',
+            }}
+          >
+            <Component.Bottom />
+          </div>
         </div>
         <div
           style={{
             width: '265px',
+            height:'100%',
             background: '#fff',
             flexShrink: 0,
+            overflowY:'auto',
           }}
         >
           {canvas && <Component.Right />}
         </div>
       </Flex>
-      <div
-        style={{
-          height: '100px',
-          background: '#fff',
-        }}
-      >
-        <Component.Bottom />
-      </div>
     </Flex>
   );
 };

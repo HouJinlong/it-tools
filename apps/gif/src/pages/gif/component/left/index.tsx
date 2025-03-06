@@ -4,7 +4,7 @@ import * as Component from './component';
 export const Left = (props: GlobalStore) => {
   return (
     <Tabs
-      defaultActiveKey="1"
+      defaultActiveKey="3"
       tabPosition={'left'}
       style={{ height: '100%' }}
       size="small"

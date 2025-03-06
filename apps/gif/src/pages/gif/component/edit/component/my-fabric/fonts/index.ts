@@ -9,17 +9,34 @@ declare module 'fabric' {
     loadFont: (data: { fontFamily?: string }) => Promise;
     MyLoadFromJSON: fabric.Canvas['loadFromJSON'];
     MyAdd: (...objects: FabricObject[]) => Promise;
+    MyGetObjects:fabric.Canvas['getObjects'];
   }
 }
 
+fabric.Canvas.prototype.MyGetObjects =function (...ids) {
+  const allObjects = [];
+  function traverseObjects(objects) {
+    objects.forEach(obj => {
+      if(ids.includes(obj.id)){
+        allObjects.push(obj);
+      }
+      if (obj instanceof fabric.Group) {
+        traverseObjects(obj.getObjects());
+      }
+    });
+  }
+  traverseObjects(this.getObjects());
+  return allObjects;
+};
+
 fabric.Canvas.prototype.MyLoadFromJSON = async function (...data) {
-  const [json] = data;
-  await Promise.all(
-    json.objects.map((item) => {
-      return this.loadFont(item);
-    })
-  );
-  return this.loadFromJSON(...data);
+  return this.loadFromJSON(...data).then(()=>{
+    return Promise.all(
+      this.MyGetObjects().map((item) => {
+        return this.loadFont(item);
+      })
+    );
+  });
 };
 
 fabric.Canvas.prototype.MyAdd = async function (...data) {
@@ -29,9 +46,10 @@ fabric.Canvas.prototype.MyAdd = async function (...data) {
     })
   );
   this.add(...data);
-  this.setActiveObject(
-    new fabric.ActiveSelection(data, { canvas: this })
-  );
+  this.setActiveObject(data[0])
+  // this.setActiveObject(
+  //   new fabric.ActiveSelection(data, { canvas: this })
+  // );
   return data;
 };
 
@@ -46,7 +64,7 @@ fabric.Canvas.prototype.loadFont = function ({ fontFamily }) {
 };
 
 export const isText = (type: string) => {
-  return ['textbox'].includes(type.toLocaleLowerCase());
+  return ['textbox','i-text'].includes(type.toLocaleLowerCase());
 };
 export const createFontCSS = (
   arr: Array<{

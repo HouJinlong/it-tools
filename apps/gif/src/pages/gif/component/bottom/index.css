@@ -1,8 +1,16 @@
+.Bottom{
+    background: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.Bottom:hover{
+    box-shadow: 0 1px 6px #0003;
+}
 .Bottom .img{
     border: 1px solid #ccc;
     position: relative;
-    width: 92px;
-    height: 92px;
+    width: 47px;
+    height: 47px;
     cursor: pointer;
 }
 .Bottom .img.active{

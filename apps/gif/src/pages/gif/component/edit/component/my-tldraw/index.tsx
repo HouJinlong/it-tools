@@ -15,7 +15,7 @@ export const MyTldraw = () => {
       // }}
     >
       <Tldraw
-        options={{ maxPages:1 }}
+        options={{ maxPages:1}}
         shapeUtils={[FabricShapeUtil]}
         onMount={(editor) => {
           editor.createShape({ type: FabricShapeUtil.type, x: 100, y: 100 });

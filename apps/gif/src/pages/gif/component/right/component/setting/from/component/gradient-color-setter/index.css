@@ -1,0 +1,6 @@
+.GradientColorSetter .ant-popover-inner-content{
+  padding:0
+}
+.GradientColorSetter .ant-popover-inner-content *{
+  box-sizing: border-box;
+}

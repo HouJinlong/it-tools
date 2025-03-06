@@ -1,11 +1,13 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import * as fabric from 'fabric';
+import {  debounce} from "lodash-es";
+
 import { useGlobalStore, GlobalStore } from '../../../../context';
 import { initMyControls } from './my-controls';
 import { useFonts } from './fonts';
 export const MyFabric = (props: GlobalStore) => {
   const canvasRef = useRef(null);
-  const { data, index, setCanvas, setActiveObjects } = useGlobalStore();
+  const { data, index, setCanvas, setActiveObjectIds,saveData } = useGlobalStore();
   useFonts();
   useEffect(() => {
     const temp = new fabric.Canvas(canvasRef.current, {
@@ -15,17 +17,33 @@ export const MyFabric = (props: GlobalStore) => {
       backgroundColor: '#fff',
     });
     setCanvas(temp);
-    // fix：hiddenTextarea
+    // temp.on("after:render",  debounce(saveData, 100));
     temp.on('object:added', (options) => {
+      // fix：hiddenTextarea
       const obj = options.target;
       if (obj instanceof fabric.Textbox || obj instanceof fabric.IText) {
         obj.hiddenTextareaContainer = temp.lowerCanvasEl.parentNode;
-        temp.loadFont(obj.fontFamily)
+        temp.loadFont(obj.fontFamily);
       }
+      // 锁定
+      const look = !obj.selectable;
+      obj.set({
+        lockMovementX: look,
+        lockMovementY: look,
+        lockScalingX: look,
+        lockScalingY: look,
+        lockRotation: look,
+        selectable: !look,
+        evented: !look,
+      });
     });
     const selection = () => {
       const actives = temp.getActiveObjects();
-      setActiveObjects(actives);
+      setActiveObjectIds(
+        actives.map((v) => {
+          return v.id;
+        })
+      );
     };
     temp.on('selection:created', selection);
     temp.on('selection:updated', selection);

@@ -81,8 +81,8 @@ export const base = {
         "version": "5.4.2",
         "originX": "left",
         "originY": "top",
-        "left": 1.2,
-        "top": 1.2,
+        "left": 0,
+        "top": 0,
         "width": 800,
         "height": 800,
         "fill": "rgb(0,0,0)",
@@ -94,8 +94,8 @@ export const base = {
         "strokeLineJoin": "miter",
         "strokeUniform": false,
         "strokeMiterLimit": 4,
-        "scaleX": 0.997,
-        "scaleY": 0.997,
+        "scaleX": 1,
+        "scaleY": 1,
         "angle": 0,
         "flipX": false,
         "flipY": false,
@@ -121,7 +121,15 @@ export const base = {
         "filters": []
       },
     },
+    {
+      info: {
+        name: 'textbox',
+        img: new URL(
+          './往 下 滑 查 看 更 多 详 情 图.png',
+          import.meta.url
+        ).href,
+      },
+      json:{"subTargetCheck":false,"interactive":false,"id":"545a0390-43e7-4291-bb59-f47a074976f8","selectable":true,"type":"Group","version":"6.5.4","originX":"left","originY":"top","left":739,"top":284.2282,"width":61,"height":371,"fill":"rgb(0,0,0)","stroke":null,"strokeWidth":0,"strokeDashArray":null,"strokeLineCap":"butt","strokeDashOffset":0,"strokeLineJoin":"miter","strokeUniform":false,"strokeMiterLimit":4,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":0.9,"shadow":null,"visible":true,"backgroundColor":"","fillRule":"nonzero","paintFirst":"fill","globalCompositeOperation":"source-over","skewX":0,"skewY":0,"layoutManager":{"type":"layoutManager","strategy":"fit-content"},"objects":[{"rx":20,"ry":20,"id":"3a37698d-b435-4846-b060-f65561c1c208","selectable":true,"type":"Rect","version":"6.5.4","originX":"left","originY":"top","left":-30.5,"top":-185.5,"width":60,"height":370,"fill":"#f2f3f3","stroke":null,"strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeDashOffset":0,"strokeLineJoin":"miter","strokeUniform":false,"strokeMiterLimit":4,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":"","visible":true,"backgroundColor":"","fillRule":"nonzero","paintFirst":"fill","globalCompositeOperation":"source-over","skewX":0,"skewY":0},{"fontSize":60,"fontWeight":"normal","fontFamily":"优设鲨鱼菲特健康体","fontStyle":"normal","lineHeight":1.16,"text":"往\n下\n滑\n查\n看\n更\n多\n详\n情\n图","charSpacing":0,"textAlign":"center","styles":[],"path":null,"pathStartOffset":0,"pathSide":"left","pathAlign":"baseline","underline":false,"overline":false,"linethrough":false,"textBackgroundColor":"","direction":"ltr","minWidth":20,"splitByGrapheme":true,"id":"3a37698d-b435-4846-b060-f65561c1c201","selectable":true,"type":"Textbox","version":"6.5.4","originX":"left","originY":"top","left":-15.6396,"top":-167.2342,"width":72.4299,"height":775.632,"fill":"#000000FF","stroke":null,"strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeDashOffset":0,"strokeLineJoin":"miter","strokeUniform":false,"strokeMiterLimit":4,"scaleX":0.3955,"scaleY":0.3955,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":"","visible":true,"backgroundColor":"","fillRule":"nonzero","paintFirst":"stroke","globalCompositeOperation":"source-over","skewX":0,"skewY":0},{"fontSize":60,"fontWeight":"normal","fontFamily":"arial","fontStyle":"normal","lineHeight":1.16,"text":">>","charSpacing":0,"textAlign":"left","styles":[],"path":null,"pathStartOffset":0,"pathSide":"left","pathAlign":"baseline","underline":false,"overline":false,"linethrough":false,"textBackgroundColor":"","direction":"ltr","minWidth":20,"splitByGrapheme":true,"id":"3a37698d-b435-4846-b060-f65561c1c209","selectable":true,"type":"Textbox","version":"6.5.4","originX":"left","originY":"top","left":21.2572,"top":146.9424,"width":74.8414,"height":67.8,"fill":"#000000FF","stroke":null,"strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeDashOffset":0,"strokeLineJoin":"miter","strokeUniform":false,"strokeMiterLimit":4,"scaleX":0.273,"scaleY":0.6961,"angle":90,"flipX":false,"flipY":false,"opacity":1,"shadow":"","visible":true,"backgroundColor":"","fillRule":"nonzero","paintFirst":"stroke","globalCompositeOperation":"source-over","skewX":0,"skewY":0}]}
+    }
   ],
 };
-
-

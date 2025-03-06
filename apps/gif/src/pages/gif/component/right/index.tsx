@@ -1,11 +1,10 @@
 import { useGlobalStore } from '../../context';
 import * as Component from './component';
 export const Right = () => {
-  const { activeObjects,data } = useGlobalStore();
-  console.log('data: ', data);
+  const { activeObjectIds,data } = useGlobalStore();
   const temp = {
-    active: activeObjects.length !== 0,
-    one: activeObjects.length === 1,
+    active: activeObjectIds.length !== 0,
+    one: activeObjectIds.length === 1,
   };
   return (
     <div style={{

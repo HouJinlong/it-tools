@@ -1,73 +1,110 @@
-import { List, Tag } from 'antd';
+import { Tag, Tree, TreeProps } from 'antd';
 import { useGlobalStore } from '../../../context';
-import { useEffect, useState } from 'react';
+import * as fabric from 'fabric';
+import { useCallback, useEffect, useState } from 'react';
+import {  debounce} from "lodash-es";
 export const Layer = () => {
-  const ctx = useGlobalStore().canvas!;
-  const { activeObjects } = useGlobalStore();
+  const { canvas: ctx, activeObjectIds } = useGlobalStore();
   const [list, setList] = useState<{
     id: string;
     type: string;
     text: string;
     isLock: boolean;
   }>([]);
+
   useEffect(() => {
-    const fn = () => {
-      const data = ctx
-        .getObjects()
-        .reverse()
-        .map((v) => {
-          return {
-            id: v.id,
-            type: v.type,
-            name: v.name,
-            text: v.text,
-            isLock: !v.selectable,
-          };
+    const traverseObjects = (objects,isGroup) => {
+      const allObjects = [];
+      objects.reverse().forEach((obj, i) => {
+        allObjects.push({
+          key: obj.id,
+          title: (
+            <>
+              <Tag
+                color="#108ee9"
+                style={{
+                  fontSize: '10px',
+                  lineHeight: 1,
+                  padding: '2px',
+                  marginRight: '2px',
+                }}
+                size="small"
+              >
+                {obj.type}
+              </Tag>
+              {obj.text ||
+                obj.name ||
+                {
+                  group: '图组',
+                  'image':'图片',
+                }[obj.type]}{' '}
+            </>
+          ),
+          type: obj.type,
+          name: obj.name,
+          text: obj.text,
+          isLock: !obj.selectable,
+          checkable:!isGroup,
+          children:
+            obj instanceof fabric.Group
+              ? traverseObjects(obj.getObjects(),true)
+              : [],
         });
-      setList(data);
+      });
+      return allObjects;
+    };
+    const fn = () => {
+      setList(traverseObjects(ctx.getObjects()));
     };
     fn();
-    ctx.on('after:render', fn);
+    ctx.on("after:render",  debounce(fn, 100));
   }, [ctx]);
 
+  const onDrop: TreeProps['onDrop'] = useCallback((info) => {
+    const dragKey = info.dragNode.key;
+    const dropPos = info.node.pos.split('-');
+
+    const dropPosition =  (list.length-1) - Number(dropPos[dropPos.length - 1]);
+
+    const temp = ctx.getObjects().filter((v) => v.id === dragKey);
+    ctx.moveObjectTo(temp[0], dropPosition);
+  },[list.length,ctx]);
+  const onSelect =useCallback<TreeProps["onSelect"]>((keys,info) => {
+    let selectedKeys = keys
+    if(info.event==='select'){
+      selectedKeys = [info.node.key]
+    }
+    if (selectedKeys.length === 0) {
+      ctx.discardActiveObject();
+    } else {
+      const temp = ctx.MyGetObjects(...selectedKeys);
+      if (temp.length === 1) {
+        ctx.setActiveObject(temp[0]);
+      } else {
+        ctx.setActiveObject(
+          new fabric.ActiveSelection(temp, {
+            canvas: ctx,
+          })
+        );
+      }
+    }
+    ctx.renderAll();
+  },[ctx]);
   return (
-    <List
-      header={<div>图层</div>}
-      footer={<div></div>}
-      size="small"
-      dataSource={list}
-      renderItem={(item) => (
-        <List.Item
-          key={item.id}
-          style={{
-            fontSize: '10px',
-            cursor: 'pointer',
-            paddingLeft: '4px',
-            backgroundColor: activeObjects.find((v) => v.id === item.id)
-              ? 'rgba(231,96, 51,0.21)'
-              : '',
-          }}
-          onClick={() => {
-            const temp = ctx.getObjects().filter((v) => v.id === item.id);
-            ctx.setActiveObject(temp[0]);
-            ctx.requestRenderAll();
-          }}
-        >
-          <Tag
-            color="#108ee9"
-            style={{
-              fontSize: '10px',
-              lineHeight: 1,
-              padding: '2px',
-              marginRight: '2px',
-            }}
-            size="small"
-          >
-            {item.type}
-          </Tag>{' '}
-          {item.text || item.name}
-        </List.Item>
-      )}
+    <Tree
+      blockNode
+      draggable={{
+        icon: false
+      }}
+      treeData={list}
+      checkable
+      showLine
+      multiple
+      onDrop={onDrop}
+      selectedKeys={activeObjectIds}
+      checkedKeys={activeObjectIds}
+      onSelect={onSelect}
+      onCheck={onSelect}
     />
   );
 };
