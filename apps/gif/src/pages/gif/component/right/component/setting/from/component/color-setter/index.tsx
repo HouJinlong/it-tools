@@ -1,33 +1,32 @@
-import { observer, useField} from '@formily/react';
+import { observer, useField } from '@formily/react';
 import { Field } from '@formily/core';
-import { Input,Popover } from "antd";
+import { Input, Popover } from 'antd';
 import { SketchPicker } from 'react-color';
-import  { useRef } from 'react';
+import { useRef } from 'react';
 import './index.css';
 export const ColorSetter = observer(() => {
-const container = useRef<HTMLDivElement>(null);
- const {setValue,value:_value}  = useField<Field>()
- const value = _value ||""
- return (
-    <div className='ColorSetter' ref={container}>
+  const container = useRef<HTMLDivElement>(null);
+  const { setValue, value: _value } = useField<Field>();
+  const value = _value || '';
+  return (
+    <div className="ColorSetter" ref={container}>
       <Input
-      value={value}
-      onChange={(e) => {
-        setValue(e.target.value);
-      }}
-      prefix={
-        <Popover
-          autoAdjustOverflow
-          getPopupContainer={() => container.current}
-          content={
-            <SketchPicker
-              color={value}
-              onChange={({ rgb }) => {
-                setValue(`rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`);
-              }}
-            />
-          }
-        >
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+        prefix={
+          <Popover
+            getPopupContainer={() => container.current}
+            content={
+              <SketchPicker
+                color={value}
+                onChange={({ rgb }) => {
+                  setValue(`rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`);
+                }}
+              />
+            }
+          >
             <div
               style={{
                 width: '20px',
@@ -38,9 +37,9 @@ const container = useRef<HTMLDivElement>(null);
                 background: value,
               }}
             ></div>
-        </Popover>
-      }
-    />
+          </Popover>
+        }
+      />
     </div>
   );
 });

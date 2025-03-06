@@ -49,7 +49,6 @@ export const Gif = () => {
             height:'100%',
             background: '#fff',
             flexShrink: 0,
-            overflowY:'auto',
           }}
         >
           {canvas && <Component.Right />}

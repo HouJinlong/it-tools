@@ -8,7 +8,9 @@ export const Right = () => {
   };
   return (
     <div style={{
-        'padding':'0 4px'
+        'padding':'0 4px',
+        overflowY:'auto',
+        height:'100%',
     }}>
       {temp.active ? <Component.Operation />:<Component.FabricSetting />}
       {temp.one && <Component.Setting />}

@@ -265,6 +265,7 @@ export const Setting = () => {
       effects() {
         onFormValuesChange(async (form) => {
           const { angle, rx_ry, fill,...other } = form.values;
+          console.log('other: ', other.shadow);
           await canvas?.loadFont(other);
           if (!isUndefined(other.src)) {
             // fix: 图片必须走setSrc才会更新
@@ -292,6 +293,8 @@ export const Setting = () => {
   }, [activeObject.id]);
   useEffect(() => {
     const temp = () => {
+      console.log('activeObject.g: ', activeObject.get('shadow')||{});
+
       form.setValues(
         {
           width: activeObject.get('width'),
@@ -316,13 +319,18 @@ export const Setting = () => {
           underline: activeObject.get('underline'),
           lineHeight: activeObject.get('lineHeight'),
           charSpacing: activeObject.get('charSpacing'),
-          // - text边框
+         
+         
+          // rect
+          rx_ry: activeObject.get('rx'),
+          // 通用
+          // - 通用 边框
           stroke: activeObject.get('stroke'),
           strokeWidth: activeObject.get('strokeWidth'),
           strokeLineJoin: activeObject.get('strokeLineJoin'),
           strokeLineCap: activeObject.get('strokeLineCap'),
-          // rect
-          rx_ry: activeObject.get('rx'),
+          // - 通用 阴影
+          shadow: activeObject.get('shadow')||{},
         },
         'overwrite'
       );
@@ -465,6 +473,51 @@ export const Setting = () => {
                       },
                     },
                   },
+                },
+              },
+              shadow: {
+                type: 'object',
+                'x-component': 'DividerLayout',
+                'x-component-props': {
+                  title: '阴影',
+                },
+                properties: {
+                  layout1:{
+                    type: 'void',
+                    'x-component': 'Space',
+                    properties: {
+                      color:{
+                        type:'string',
+                        title:"颜色",
+                        'x-decorator': 'FormItem',
+                        "x-component":'ColorSetter'
+                      },
+                      blur:{
+                        type:'string',
+                        title:"模糊",
+                        'x-decorator': 'FormItem',
+                        "x-component":'NumberPicker'
+                      },
+                    }
+                  },
+                  layout2:{
+                    type: 'void',
+                    'x-component': 'Space',
+                    properties: {
+                      offsetX:{
+                        type:'string',
+                        title:"X轴",
+                        'x-decorator': 'FormItem',
+                        "x-component":'NumberPicker'
+                      },
+                      offsetY:{
+                        type:'string',
+                        title:"Y轴",
+                        'x-decorator': 'FormItem',
+                        "x-component":'NumberPicker'
+                      }
+                    }
+                  }
                 },
               },
             },
