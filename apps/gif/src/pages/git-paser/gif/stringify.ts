@@ -8,6 +8,10 @@ export const stringify = (data: {
       }
     ]
   >;
+  option: {
+    width: number;
+    height: number;
+  };
 }) => {
   return new Promise<string>((resolve) => {
     const temp = new GIF({
@@ -17,8 +21,7 @@ export const stringify = (data: {
         '../../../../node_modules/gif.js/dist/gif.worker.js',
         import.meta.url
       ).href,
-      width: 800,
-      height: 800,
+      ...data.option,
     });
     data.frame.forEach((v) => {
       temp.addFrame(...v);

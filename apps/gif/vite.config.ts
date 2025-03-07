@@ -13,7 +13,8 @@ export default defineConfig({
   resolve:{
     alias:{
       'react-best-gradient-color-picker/gradientParser':join(__dirname,"../../node_modules/react-best-gradient-color-picker/dist/esm/utils/gradientParser.js"),
-      "@src":join(__dirname,"../gif/src")
+      "@src":join(__dirname,"../gif/src"),
+      "@node_modules":join(__dirname,"../../node_modules")
     }
   },
   preview: {

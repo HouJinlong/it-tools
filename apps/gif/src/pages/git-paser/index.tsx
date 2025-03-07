@@ -60,6 +60,9 @@ export const GifPaser = () => {
                         frame: temp.frames.map((v, i) => {
                           return [imgEL[i], { delay: v.delay }];
                         }),
+                        option:{
+                            ...temp.size,
+                        }
                       }),
                     });
                     open?.({
@@ -90,7 +93,7 @@ export const GifPaser = () => {
           >
             {data ? (
               <Image.PreviewGroup>
-                <Space>
+                <Space wrap>
                   {data.frames.map((v) => {
                     return (
                       <Space

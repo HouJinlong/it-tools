@@ -41,8 +41,8 @@ export const parse = (url: string) => {
       const arrayBuffer = oReq.response;
       if (arrayBuffer) {
         const gif = parseGIF(arrayBuffer);
+       
         const frames = decompressFrames(gif, true);
-
         gifCanvas.width = gif.lsd.width;
         gifCanvas.height = gif.lsd.height;
 

@@ -17,7 +17,8 @@
     "moduleResolution": "bundler",
     "paths": {
       "react-best-gradient-color-picker/gradientParser": ["../../node_modules/react-best-gradient-color-picker/dist/esm/utils/gradientParser.d.ts"],
-      "@src/*":["./src/*"]
+      "@src/*":["./src/*"],
+      "@node_modules/*":["../../node_modules"],
     }
   },
   "exclude": [
