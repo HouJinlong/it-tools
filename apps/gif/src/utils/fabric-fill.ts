@@ -8,7 +8,6 @@ export function cssFillToFabricFill(cssFill, element) {
     if (temp.type === 'linear-gradient') {
       const gradient = parseLinearGradient(temp, element);
       if (gradient) {
-        console.log('gradient: ', gradient);
         return new fabric.Gradient(gradient);
       }
     }

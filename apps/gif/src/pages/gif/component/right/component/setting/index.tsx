@@ -265,14 +265,12 @@ const isUndefined = (value: any): boolean => {
 export const Setting = () => {
   const { canvas } = useGlobalStore();
   const activeObject = useActiveObjects()[0];
-  console.log('activeObject: ', activeObject);
   const form = useMemo(() => {
     return createForm({
       values: {},
       effects() {
         onFormValuesChange(async (form) => {
           const { angle, rx_ry, fill,...other } = form.values;
-          console.log('other: ', other.shadow);
           await canvas?.loadFont(other);
           if (!isUndefined(other.src)) {
             // fix: 图片必须走setSrc才会更新
@@ -300,8 +298,6 @@ export const Setting = () => {
   }, [activeObject.id]);
   useEffect(() => {
     const temp = () => {
-      console.log('activeObject.g: ', activeObject.get('shadow')||{});
-
       form.setValues(
         {
           width: activeObject.get('width'),

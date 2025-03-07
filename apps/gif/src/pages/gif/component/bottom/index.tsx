@@ -98,7 +98,7 @@ export const RenderGIf = () => {
   );
 };
 export const Bottom = () => {
-  const { canvas, data, index, addCloneData, updateIndex } = useGlobalStore();
+  const { canvas, data, index, addData, updateIndex } = useGlobalStore();
   return (
     <Flex
       className="Bottom"
@@ -141,17 +141,17 @@ export const Bottom = () => {
             <Space>
               <Button
                 onClick={() => {
-                  addCloneData();
+                  addData(false);
                 }}
               >
                 空白画布
               </Button>
               <Button
                 onClick={() => {
-                  addCloneData();
+                  addData(true);
                 }}
               >
-                复制画布
+                复制当前
               </Button>
             </Space>
           }
@@ -160,9 +160,6 @@ export const Bottom = () => {
           <Button
             type="primary"
             size="small"
-            onClick={() => {
-              addCloneData();
-            }}
           >
             新建画布
           </Button>
