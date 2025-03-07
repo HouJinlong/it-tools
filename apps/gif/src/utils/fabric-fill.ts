@@ -71,7 +71,15 @@ function parseRadialGradient(data, element) {
   };
 }
 
-export function fabricFillToCssFill(fill, fill_data) {
+export function fabricFillToCssFill({
+  fill,
+  fill_data,
+  gradientAngle,
+}: {
+  fill: any;
+  fill_data?: string;
+  gradientAngle?: number;
+}) {
   if (fill_data) {
     return fill_data;
   }
@@ -83,7 +91,7 @@ export function fabricFillToCssFill(fill, fill_data) {
       .join(', ');
     // 线性渐变
     if (fill.type === 'linear') {
-      return `linear-gradient(0deg, ${colorStops})`;
+      return `linear-gradient(${gradientAngle || 0}deg, ${colorStops})`;
     }
     // 径向渐变
     if (fill.type === 'radial') {

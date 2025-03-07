@@ -3,10 +3,13 @@ import { useEffect, useMemo } from 'react';
 import { useGlobalStore, useActiveObjects } from '../../../../context';
 import { createForm, onFormValuesChange } from '@formily/core';
 import { FormProvider } from '@formily/react';
+
+import  * as FabricFill from "@src/utils/fabric-fill";
+
 import { fonts } from '../../../edit/component/my-fabric/fonts/downloads';
 import { isText } from '../../../edit/component/my-fabric/fonts';
 import { SchemaField } from './from';
-import * as FabricFill  from './fabric-fill';
+
 import {
   BoldOutlined,
   ItalicOutlined,
@@ -223,6 +226,10 @@ const schemaMap = {
           },
         },
       },
+      fontstyle:{
+        type: 'void',
+        'x-component': 'FontStyle',
+      }
     },
   },
   rect: {
@@ -309,7 +316,11 @@ export const Setting = () => {
           src: activeObject.get('src'),
           // text
           text: activeObject.get('text'),
-          fill: FabricFill.fabricFillToCssFill(activeObject.get('fill'),activeObject.get('fill_data')),
+          fill: FabricFill.fabricFillToCssFill({
+              fill:activeObject.get('fill'),
+              fill_data:activeObject.get('fill_data'),
+              gradientAngle:activeObject.get('gradientAngle'),
+          }),
           fontFamily: activeObject.get('fontFamily'),
           fontSize: activeObject.get('fontSize'),
           textAlign: activeObject.get('textAlign'),

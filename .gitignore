@@ -45,5 +45,5 @@ vite.config.*.timestamp*
 vitest.config.*.timestamp*
 
 
-tools/font/downloads
-tools/font/demo.json
+tools/**/downloads
+tools/**/demo.json

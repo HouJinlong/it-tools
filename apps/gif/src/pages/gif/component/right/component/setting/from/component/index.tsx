@@ -5,3 +5,7 @@ export * from "./gradient-color-setter"
 
 export * from "./divider-layout"
 
+
+
+export * from "./font-style"
+
