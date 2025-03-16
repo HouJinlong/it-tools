@@ -72,7 +72,7 @@ export const RenderGIf = () => {
         onClick={() => {
           updateIndex(index);
           setTimeout(() => {
-            renderGif().then(setGif);
+            renderGif(delay).then(setGif);
           }, 0);
         }}
       >
@@ -98,7 +98,8 @@ export const RenderGIf = () => {
   );
 };
 export const Bottom = () => {
-  const { canvas, data, index, addData, updateIndex } = useGlobalStore();
+  const { canvas, data, index, addData, updateIndex, removeData } =
+    useGlobalStore();
   return (
     <Flex
       className="Bottom"
@@ -157,10 +158,7 @@ export const Bottom = () => {
           }
           title="新建画布"
         >
-          <Button
-            type="primary"
-            size="small"
-          >
+          <Button type="primary" size="small">
             新建画布
           </Button>
         </Popover>
@@ -183,7 +181,7 @@ export const Bottom = () => {
         <Typography.Text
           copyable={{
             text: JSON.stringify(
-              canvas?.toDatalessJSON(['id', 'name', 'selectable','fill_data'])
+              canvas?.toDatalessJSON(['id', 'name', 'selectable', 'fill_data'])
             ),
             icon: [
               <Button type="primary" size="small">
@@ -192,6 +190,17 @@ export const Bottom = () => {
             ],
           }}
         />
+        {data.length > 1 && (
+          <Button
+            type="primary"
+            size="small"
+            onClick={() => {
+              removeData();
+            }}
+          >
+            删除当前
+          </Button>
+        )}
       </Space>
     </Flex>
   );
